@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สินค้าของโมเดล <%= model.model_name %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/custom-styles.css"> <!-- เรียกใช้ไฟล์ CSS ใหม่ -->
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main class="container mt-5">
+    
+    <h1 class="text-center mb-5">สินค้าของโมเดล <%= model.model_name %></h1>
+
+    <div class="row">
+      <% products.forEach(product => { %>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="<%= product.products_image %>" class="card-img-top" alt="<%= product.product_name %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= product.product_name %></h5>
+              <p class="card-text">ราคา: <%= product.price %> บาท</p>
+              <p class="card-text">หมวดหมู่: <%= product.category %></p>
+              <form action="/cart/add" method="POST">
+                <input type="hidden" name="productId" value="<%= product.products_id %>">
+                <button type="submit" class="btn btn-primary">หยิบใส่ตะกร้า</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+  <link rel="stylesheet" href="/css/product-slider.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main class="container mt-5">
+    <h1 class="text-center mb-5"><%= title %></h1>
+
+    <!-- ชุดไทยโบราณ -->
+    <section>
+        <br>
+      <h2 >ชุดไทยโบราณ</h2>
+      <br>
+      <div class="splide" id="splide-thaiTraditionalDress">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <% thaiTraditionalDress.forEach(product => { %>
+              <li class="splide__slide">
+                <div class="card">
+                  <a href="/products/model/<%= product.model_id %>">
+                    <img src="<%= product.model_image %>" class="card-img-top product-image" alt="<%= product.model_name %>">
+                  </a>
+                  <div class="card-body text-center">
+                    <h5 class="card-title"><%= product.model_name %></h5>
+                    <p class="card-text">โมเดล : <%= product.model_name %></p>
+                  </div>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ชุดเจ้าสาว -->
+    <section>
+        <br><br>
+      <h2 >ชุดเจ้าสาว</h2>
+      <br>
+      <div class="splide" id="splide-bridalDress">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <% bridalDress.forEach(product => { %>
+              <li class="splide__slide">
+                <div class="card">
+                  <a href="/products/model/<%= product.model_id %>">
+                    <img src="<%= product.model_image %>" class="card-img-top product-image" alt="<%= product.model_name %>">
+                  </a>
+                  <div class="card-body text-center">
+                    <h5 class="card-title"><%= product.model_name %></h5>
+                    <p class="card-text">โมเดล : <%= product.model_name %></p>
+                  </div>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ชุดเจ้าบ่าว -->
+    <section>
+        <br><br>
+      <h2 >ชุดเจ้าบ่าว</h2>
+      <br>
+      <div class="splide" id="splide-groomSuit">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <% groomSuit.forEach(product => { %>
+              <li class="splide__slide">
+                <div class="card">
+                  <a href="/products/model/<%= product.model_id %>">
+                    <img src="<%= product.model_image %>" class="card-img-top product-image" alt="<%= product.model_name %>">
+                  </a>
+                  <div class="card-body text-center">
+                    <h5 class="card-title"><%= product.model_name %></h5>
+                    <p class="card-text">โมเดล : <%= product.model_name %></p>
+                  </div>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      new Splide('#splide-thaiTraditionalDress', {
+        type: 'loop',
+        perPage: 3,
+        perMove: 1,
+        breakpoints: {
+          1200: { perPage: 2 },
+          768: { perPage: 1 },
+        },
+      }).mount();
+
+      new Splide('#splide-bridalDress', {
+        type: 'loop',
+        perPage: 3,
+        perMove: 1,
+        breakpoints: {
+          1200: { perPage: 2 },
+          768: { perPage: 1 },
+        },
+      }).mount();
+
+      new Splide('#splide-groomSuit', {
+        type: 'loop',
+        perPage: 3,
+        perMove: 1,
+        breakpoints: {
+          1200: { perPage: 2 },
+          768: { perPage: 1 },
+        },
+      }).mount();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <%- include('../partials/sidebar') %>
+
+  <!-- Main content -->
+  <main class="container">
+    <button class="openbtn" onclick="openNav()">&#9776; เมนู</button>
+
+    <h1 class="text-center my-4"><%= title %></h1>
+
+    <!-- Card Section -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-header">จำนวนผลิตภัณฑ์</div>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+          <div class="card-header">จำนวนคำสั่งซื้อ</div>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3">
+          <div class="card-header">จำนวนข้อความ</div>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2>Models</h2>
+          <a href="/admin/add-model" class="btn btn-primary">เพิ่มโมเดล</a>
+        </div>
+        <ul class="list-group mb-4">
+          <% models.forEach(function(model) { %>
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5><%= model.model_name %></h5>
+                </div>
+                <% if (model.model_image) { %>
+                  <img src="<%= model.model_image %>" alt="<%= model.model_name %>" class="img-thumbnail" style="max-width: 100px;">
+                <% } %>
+              </div>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2>Products</h2>
+          <a href="/admin/add-product" class="btn btn-primary">เพิ่มสินค้า</a>
+        </div>
+        <ul class="list-group mb-4">
+          <% products.forEach(function(product) { %>
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5><%= product.product_name %></h5>
+                  <p>Category: <%= product.category %></p>
+                  <p>Price: <%= product.price %></p>
+                  <p>Model: <%= product.model_name %></p>
+                </div>
+                <% if (product.products_image) { %>
+                  <img src="<%= product.products_image %>" alt="<%= product.product_name %>" class="img-thumbnail" style="max-width: 100px;">
+                <% } %>
+              </div>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <style>
+        .product-image {
+            max-width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <%- include('../partials/sidebar') %>
+
+    <!-- Main content -->
+    <main class="container">
+        <button class="openbtn" onclick="openNav()">&#9776; เมนู</button>
+
+        <h1 class="text-center my-4">Delete Product</h1>
+
+        <div class="text-center">
+            <p>คุณแน่ใจหรือไม่ว่าต้องการลบสินค้าชื่อ <strong><%= product.product_name %></strong>?</p>
+            <div class="card mb-4 mx-auto" style="max-width: 400px;">
+                <img src="<%= product.products_image %>" class="card-img-top product-image mx-auto mt-3" alt="<%= product.product_name %>">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><%= product.product_name %></h5>
+                    <p class="card-text">ราคา: <%= product.price %> บาท</p>
+                    <p class="card-text">หมวดหมู่: <%= product.category %></p>
+                    <p class="card-text">นายแบบ: <%= product.model_name %></p>
+                </div>
+            </div>
+            <form action="/admin/delete-product/<%= product.products_id %>" method="POST">
+                <button type="submit" class="btn btn-danger">ลบ</button>
+                <a href="/admin/manageProducts" class="btn btn-secondary">ยกเลิก</a>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

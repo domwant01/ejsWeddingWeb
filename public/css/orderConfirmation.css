@@ -1,0 +1,39 @@
+/* orderConfirmation.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    margin-bottom: 10px;
+}
+
+.alert-success {
+    font-size: 1.2em;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.table tbody td {
+    text-align: center;
+}

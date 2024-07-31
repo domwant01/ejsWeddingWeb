@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/custom-buttons.css">
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <%- include('../partials/sidebar') %>
+
+    <!-- Main content -->
+    <div class="container mt-5">
+        <button class="openbtn" onclick="openNav()">&#9776; เมนู</button>
+
+        <h1 class="text-center mb-4">Manage Products</h1>
+
+        <div class="action-buttons mb-3">
+            <a href="/admin/add-product" class="btn btn-primary">เพิ่มสินค้าใหม่</a>
+            <div>
+                <a href="/admin/edit-history" class="btn btn-edit-history btn-history">ประวัติการแก้ไข</a>
+                <a href="/admin/delete-history" class="btn btn-delete-history btn-history">ประวัติการลบ</a>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>รูปภาพ</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>ราคา</th>
+                    <th>หมวดหมู่</th>
+                    <th>การกระทำ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td>
+                            <img src="<%= product.products_image %>" alt="<%= product.product_name %>" style="max-width: 100px;">
+                        </td>
+                        <td><%= product.product_name %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.category %></td>
+                        <td>
+                            <a href="/admin/edit-product/<%= product.products_id %>" class="btn btn-warning mb-1">แก้ไข</a>
+                            <a href="/admin/delete-product/<%= product.products_id %>" class="btn btn-danger">ลบ</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('../partials/footer') %>
+</body>
+</html>

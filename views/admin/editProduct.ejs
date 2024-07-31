@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <%- include('../partials/sidebar') %>
+
+  <!-- Main content -->
+  <main class="container">
+    <button class="openbtn" onclick="openNav()">&#9776; เมนู</button>
+
+    <h1 class="text-center my-4">Edit Product</h1>
+
+    <form action="/admin/edit-product/<%= product.products_id %>" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="productName">ชื่อสินค้า</label>
+        <input type="text" class="form-control" id="productName" name="productName" value="<%= product.product_name %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="price">ราคา</label>
+        <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="category">หมวดหมู่</label>
+        <select class="form-control" id="category" name="category" required>
+          <option value="thaiTraditionalDress" <%= product.category === 'thaiTraditionalDress' ? 'selected' : '' %>>ชุดไทยโบราณ</option>
+          <option value="bridalDress" <%= product.category === 'bridalDress' ? 'selected' : '' %>>ชุดเจ้าสาว</option>
+          <option value="groomSuit" <%= product.category === 'groomSuit' ? 'selected' : '' %>>ชุดเจ้าบ่าว</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="modelId">นายแบบ</label>
+        <select class="form-control" id="modelId" name="modelId" required>
+          <% models.forEach(function(model) { %>
+            <option value="<%= model.model_id %>" <%= product.model_id === model.model_id ? 'selected' : '' %>><%= model.model_name %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="productImage">รูปภาพสินค้า</label>
+        <input type="file" class="form-control-file" id="productImage" name="productImage">
+        <% if (product.products_image) { %>
+          <img src="<%= product.products_image %>" alt="<%= product.product_name %>" style="max-width: 200px;" class="mt-3">
+          <input type="hidden" name="existingImage" value="<%= product.products_image %>">
+        <% } %>
+      </div>
+
+      <button type="submit" class="btn btn-primary">บันทึกการเปลี่ยนแปลง</button>
+    </form>
+  </main>
+</body>
+</html>

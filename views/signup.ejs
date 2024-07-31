@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function calculateAge() {
+            const birthdate = new Date(document.getElementById('birthdate').value);
+            const diff_ms = Date.now() - birthdate.getTime();
+            const age_dt = new Date(diff_ms);
+            const age = Math.abs(age_dt.getUTCFullYear() - 1970);
+            document.getElementById('age').value = age;
+        }
+    </script>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="container mt-5">
+        <h1 class="text-center mb-4">สมัครสมาชิก</h1>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="email">อีเมล</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="fullname">ชื่อ-สกุล</label>
+                <input type="text" class="form-control" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">วันเกิด</label>
+                <input type="date" class="form-control" id="birthdate" name="birthdate" required onchange="calculateAge()">
+            </div>
+            <div class="form-group">
+                <label for="age">อายุ</label>
+                <input type="number" class="form-control" id="age" name="age" readonly required>
+            </div>
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">ที่อยู่</label>
+                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="password">รหัสผ่าน</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">สมัครสมาชิก</button>
+        </form>
+        <div class="mt-3">
+            <p>มีบัญชีผู้ใช้แล้ว? <a href="/signin">เข้าสู่ระบบ</a></p>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<h2 class="fw-bolder"><%= categoryTitle %></h2>
+<div class="splide" id="<%= sliderId %>">
+    <div class="splide__track">
+        <ul class="splide__list">
+            <% products.forEach(product => { %>
+            <li class="splide__slide">
+                <a href="#" class="lightbox w-inline-block w-lightbox">
+                    <div class="lightboox__w-image">
+                        <img class="card-img-top" src="<%= product.img %>" alt="..." />
+                    </div>
+                    <div class="text-center mt-2">
+                        <h5 class="fw-bolder"><%= product.name %></h5>
+                        <%= product.price %>
+                    </div>
+                </a>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+</div>

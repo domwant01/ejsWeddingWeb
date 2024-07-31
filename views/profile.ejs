@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลลูกค้า</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="container mt-5">
+        <h1 class="text-center mb-4">ข้อมูลลูกค้า</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">ชื่อ: <%= user.fullname %></h5>
+                <p class="card-text">อีเมล: <%= user.email %></p>
+                <p class="card-text">วันเกิด: <%= new Date(user.birthdate).toLocaleDateString('th-TH') %></p>
+                <p class="card-text">อายุ: <%= user.age %> ปี</p>
+                <p class="card-text">เบอร์โทรศัพท์: <%= user.phone %></p>
+                <p class="card-text">ที่อยู่: <%= user.address %></p>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

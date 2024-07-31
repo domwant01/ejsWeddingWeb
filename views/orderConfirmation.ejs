@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบจอง</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/orderConfirmation.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    <main class="container mt-5">
+        
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center mb-4">ใบจอง</h1>
+                <h5 class="card-title">ชื่อผู้ซื้อ: <%= order[0].fullname %></h5>
+                <p class="card-text">เลขที่ใบจอง: <%= order[0].order_id %></p>
+                <p class="card-text">ที่อยู่: <%= order[0].address %></p>
+                <p class="card-text">เบอร์โทร: <%= order[0].phone %></p>
+                <p class="card-text">วันที่สั่งซื้อ: <%= order[0].created_at %></p>
+                <h5 class="mt-4">รายการสินค้า</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>สินค้า</th>
+                            <th>จำนวน</th>
+                            <th>ราคา</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let totalPrice = 0; %>
+                        <% order.forEach(item => { %>
+                        <tr>
+                            <td><%= item.product_name %></td>
+                            <td><%= item.quantity %></td>
+                            <td><%= Number(item.price).toFixed(2) %> บาท</td>
+                        </tr>
+                        <% totalPrice += item.price * item.quantity; %>
+                        <% }); %>
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <h5>รวมทั้งหมด: <%= Number(totalPrice).toFixed(2) %> บาท</h5>
+                </div>
+                <div class="alert alert-success text-center mt-4" role="alert">
+                    ชำระเงินเรียบร้อย
+                </div>
+                
+            </div>
+        </div>
+        <div class="alert alert-warning text-center mt-4" role="alert">
+            โปรดแคปหน้าจอเพื่อนำไปแสดงให้กับร้านค้า
+        </div>
+    </main>
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Contact Messages</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <%- include('partials/sidebar') %>
+
+  <main class="container mt-5">
+    <h1 class="text-center mb-5">Manage Contact Messages</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ชื่อ</th>
+          <th>อีเมล</th>
+          <th>ข้อความ</th>
+          <th>วันที่</th>
+          <th>การกระทำ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% messages.forEach(message => { %>
+          <tr>
+            <td><%= message.name %></td>
+            <td><%= message.email %></td>
+            <td><%= message.message %></td>
+            <td><%= message.created_at %></td>
+            <td>
+              <a href="mailto:<%= message.email %>?subject=ตอบกลับข้อความของคุณ" class="btn btn-primary">ตอบกลับ</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

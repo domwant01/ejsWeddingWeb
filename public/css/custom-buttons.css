@@ -1,0 +1,30 @@
+.btn-history {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.btn-edit-history {
+    background-color: rgb(218, 143, 6);
+    color: black;
+    border: none;
+}
+
+.btn-edit-history:hover {
+    background-color: gold;
+}
+
+.btn-delete-history {
+    background-color: rgb(197, 50, 50);
+    color: black;
+    border: none;
+}
+
+.btn-delete-history:hover {
+    background-color: rgb(235, 71, 21);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
